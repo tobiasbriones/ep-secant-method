@@ -9,6 +9,7 @@
 #include "SecantMethodApp.h"
 
 const double SecantMethodApp::ERROR = pow(10, -4);
+const int SecantMethodApp::THRESHOLD = 1000;
 
 SecantMethodApp::SecantMethodApp()
 {
@@ -46,13 +47,17 @@ bool SecantMethodApp::gatherInput()
 		a = getDouble("Enter a: ");
 		b = getDouble("Enter b: ");
 
-		if (a == b)
+		// If polynomial is constant don't worry about checking this
+		if (!pPolynomial->isConstant())
 		{
-			throw runtime_error("a = b is not allowed, choose a < b");
-		}
-		if (pPolynomial->eval(a) == pPolynomial->eval(b))
-		{
-			throw runtime_error("P(a) = P(b) is not allowed, choose a < b such that P(a) != P(b)");
+			if (a == b)
+			{
+				throw runtime_error("a = b is not allowed, choose a < b");
+			}
+			if (pPolynomial->eval(a) == pPolynomial->eval(b))
+			{
+				throw runtime_error("P(a) = P(b) is not allowed, choose a < b such that P(a) != P(b)");
+			}
 		}
 	}
 	catch (const runtime_error & e)
@@ -102,6 +107,11 @@ bool SecantMethodApp::execute()
 		previous = current;
 		hasFinished = (fabs(fcurrent) * errorFactor) < 1;
 		iterationsNumber++;
+
+		if (iterationsNumber == THRESHOLD)
+		{
+			break;
+		}
 	}
 	froot = fcurrent;
 	return true;

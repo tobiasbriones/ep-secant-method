@@ -15,6 +15,7 @@ class SecantMethodApp : public NumericalMethodApp
 
 private:
     static const double ERROR;
+    static const int THRESHOLD;
     int n;
     double a;
     double b;
