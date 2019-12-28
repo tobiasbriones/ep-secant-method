@@ -118,6 +118,7 @@ bool SecantMethodApp::execute()
 			break;
 		}
 	}
+	root = current;
 	froot = fcurrent;
 	rootFound = hasFinished;
 	return true;
