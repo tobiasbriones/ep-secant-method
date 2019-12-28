@@ -15,10 +15,8 @@ void NumericalMethodApp::clearScreen() const
 void NumericalMethodApp::showWelcome() const
 {
 	string method = getName();
-	int nameL = 29;
-	int nameR = 70 - (nameL + method.length());
 
-	printf("                    **********************************************************************                    ");
+	printf("                      ******************************************************************                      ");
 	printf("\n");
 	printf("                    *                                                                    *                    ");
 	printf("\n");
@@ -26,7 +24,7 @@ void NumericalMethodApp::showWelcome() const
 	printf("\n");
 	printf("                    *                                                                    *                    ");
 	printf("\n");
-	printf("                    *____________________________________________________________________*                    ");
+	printf("                    *  ________________________________________________________________  *                    ");
 	printf("\n");
 	printf("                    *                                                                    *                    ");
 	printf("\n");
@@ -37,23 +35,23 @@ void NumericalMethodApp::showWelcome() const
 	printf("                    *");
 	for (int i = 1; i < 70; i++)
 	{
-		if (i < nameL || i > nameL + method.length())
+		if (i == 29)
 		{
-			printf(" ");
+			string insert = method + " METHOD";
+
+			printf(insert.c_str());
+			i += insert.length();
 		}
 		else
 		{
-			string insert = method + " METHOD";
-			
-			printf(insert.c_str());
-			i += insert.length();
+			printf(" ");
 		}
 	}
 	printf("*                    ");
 	printf("\n");
 	printf("                    *                                                                    *                    ");
 	printf("\n");
-	printf("                       ****************************************************************                       ");
+	printf("                      ******************************************************************                      ");
 	printf("\n");
 	printf("\n");
 }
