@@ -49,12 +49,9 @@ string Monomial::toString(bool positive) const
 	}
 
 	// Coefficient is -1 or 1
-	if (coefficient == -1 || coefficient == 1)
+	if ((coefficient == -1 || coefficient == 1) && degree > 0)
 	{
-		if (degree > 0)
-		{
-			c = "";
-		}
+		c = "";
 	}
 	else
 	{

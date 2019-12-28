@@ -99,6 +99,8 @@ bool SecantMethodApp::execute()
 	double errorFactor = (1 / ERROR) / 10;
 	bool hasFinished = false;
 
+	printf("Error for the computation: %f \n", ERROR);
+	printf("Running the secant method iterations... \n");
 	while (!hasFinished)
 	{
 		double fpreviousPrevious = pPolynomial->eval(previousPrevious);
@@ -123,6 +125,11 @@ bool SecantMethodApp::execute()
 
 void SecantMethodApp::showResults() const
 {
+	printf("\n");
+	printf("                               RESULTS                                ");
+	printf("\n");
+	printf("   ________________________________________________________________   ");
+	printf("\n");
 	printf("\n");
 	printf("# of iterations: %d", iterationsNumber);
 	printf("\n");
