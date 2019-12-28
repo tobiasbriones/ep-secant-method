@@ -23,16 +23,16 @@ class Polynomial
 {
 
 private:
-	const int grade;
+	const int degree;
 	vector<Monomial> monomials;
 
 public:
-	Polynomial(int grade);
+	Polynomial(int);
 
-	int getGrade() const;
-	void setCoefficient(int grade, double value);
-	double getCoefficient(int c) const;
-	double eval(double x);
+	int getDegree() const;
+	void setCoefficient(int, double);
+	double getCoefficient(int) const;
+	double eval(double);
 	string toString();
 	bool isConstant() const;
 

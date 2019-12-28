@@ -7,48 +7,48 @@
 
 #include "Polynomial.h"
 
-Polynomial::Polynomial(int grade) :
-	grade(grade)
+Polynomial::Polynomial(int degree) :
+	degree(degree)
 {
-	if (grade < 0)
+	if (degree < 0)
 	{
-		string msg = "A polynomial has non-negative grade, invalid grade " + grade;
+		string msg = "A polynomial has non-negative degree, invalid degree " + degree;
 		throw runtime_error(msg);
 	}
-	for (int i = 0; i < grade; i++)
+	for (int i = 0; i < degree; i++)
 	{
 		monomials.push_back(Monomial(i, 0));
 	}
-	monomials.push_back(Monomial(grade, 1));
+	monomials.push_back(Monomial(degree, 1));
 }
 
-int Polynomial::getGrade() const
+int Polynomial::getDegree() const
 {
-	return grade;
+	return degree;
 }
 
-void Polynomial::setCoefficient(int monomialGrade, double value)
+void Polynomial::setCoefficient(int monomialDegree, double value)
 {
-	if (monomialGrade < 0 || monomialGrade > grade)
+	if (monomialDegree < 0 || monomialDegree > degree)
 	{
-		string msg = "Invalid monomial grade " + to_string(monomialGrade) + " for polynomial of grade " + to_string(grade);
+		string msg = "Invalid monomial degree " + to_string(monomialDegree) + " for polynomial of degree " + to_string(degree);
 		throw runtime_error(msg);
 	}
 	// The last monomial can't be zero as this polynomial has grade n
 	// It may be zero only if it is a constant polynomial
-	if (!isConstant() && monomialGrade == grade && value == 0)
+	if (!isConstant() && monomialDegree == degree && value == 0)
 	{
-		string g = to_string(grade);
-		string msg = "This polynomial has grade " + g + ", the monomial of grade " + g + " can't be zero.";
+		string g = to_string(degree);
+		string msg = "This polynomial has degree " + g + ", the monomial of degree " + g + " can't be zero.";
 
 		throw runtime_error(msg);
 	}
-	monomials.at(monomialGrade).setCoefficient(value);
+	monomials.at(monomialDegree).setCoefficient(value);
 }
 
-double Polynomial::getCoefficient(int monomialGrade) const
+double Polynomial::getCoefficient(int monomialDegree) const
 {
-	return monomials.at(monomialGrade).getCoefficient();
+	return monomials.at(monomialDegree).getCoefficient();
 }
 
 double Polynomial::eval(double x)
@@ -78,5 +78,5 @@ string Polynomial::toString()
 
 bool Polynomial::isConstant() const
 {
-	return grade == 0;
+	return degree == 0;
 }

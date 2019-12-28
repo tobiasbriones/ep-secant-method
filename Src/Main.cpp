@@ -15,13 +15,8 @@ using std::cin;
 
 const int ERROR = pow(10, -4);
 
-double getRootBySecantMethod(double a, double b, Polynomial& polynomial, double error, double& froot, int& i)
+double getRootBySecantMethod(double a, double b, Polynomial& polynomial, double& froot, int& i)
 {
-	if (error == 0)
-	{
-		cout << "El error no puede ser cero" << endl;
-		return 0;
-	}
 	// The method doesn't apply for constant polynomials as you have to divide by zero in that case
 	if (polynomial.isConstant())
 	{
@@ -30,22 +25,22 @@ double getRootBySecantMethod(double a, double b, Polynomial& polynomial, double 
 			
 		}
 	}
-	double previusPrevius = a;
-	double previus = b;
+	double previousPrevious = a;
+	double previous = b;
 	double current;
 	double fcurrent;
-	double errorFactor = (1 / error) / 10;
+	double errorFactor = (1 / ERROR) / 10;
 	bool hasFinished = false;
 
 	while (!hasFinished)
 	{
-		double fpreviusPrevius = polynomial.eval(previusPrevius);
-		double fprevius = polynomial.eval(previus);
+		double fpreviousPrevious = polynomial.eval(previousPrevious);
+		double fprevious = polynomial.eval(previous);
 
-		current = previusPrevius - fpreviusPrevius * ((previus - previusPrevius) / (fprevius - fpreviusPrevius));
+		current = previousPrevious - fpreviousPrevious * ((previous - previousPrevious) / (fprevious - fpreviousPrevious));
 		fcurrent = polynomial.eval(current);
-		previusPrevius = previus;
-		previus = current;
+		previousPrevious = previous;
+		previous = current;
 		hasFinished = (fabs(fcurrent) * errorFactor) < 1;
 		i++;
 	}
@@ -59,11 +54,11 @@ void run()
 	double a;
 	double b;
 
-	printf("Ingresar grado del polinomio (0-5)\n");
+	printf("Enter the polynomial degree\n");
 	cin >> n;
-	if (n < 0 || n > 5)
+	if (n < 0)
 	{
-		printf("El grado del polinomio debe ser de 0-5");
+		printf("The polynomial degree must be a non-negative integer");
 		system("pause");
 		run();
 		return;
@@ -74,23 +69,23 @@ void run()
 	{
 		double coefficient;
 
-		printf("Coeficiente %d: ", i);
+		printf("Enter the coefficient %d: ", i);
 		cin >> coefficient;
 		polynomial.setCoefficient(i, coefficient);
 	}
-	cout << "Calculando las raices para: " << polynomial.toString() << endl;
-	printf("Ingresar a:\n");
+	cout << "Computing the roots for: " << polynomial.toString() << endl;
+	printf("Enter a:\n");
 	cin >> a;
-	printf("Ingresar b:\n");
+	printf("Enter b:\n");
 	cin >> b;
 	int i = 0;
 	double froot = -1;
-	double root = getRootBySecantMethod(a, b, polynomial, ERROR, froot, i);
+	double root = getRootBySecantMethod(a, b, polynomial, froot, i);
 
 	printf("\n");
-	printf("Iteraciones: %d", i);
+	printf("# iterations: %d", i);
 	printf("\n");
-	printf("Raiz en x = %f", root);
+	printf("Root at x = %f", root);
 	printf("\n");
 	printf("P(x) = %f", froot);
 }

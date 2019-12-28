@@ -7,12 +7,12 @@
 
 #include "Monomial.h"
 
-Monomial::Monomial(int grade, double coefficient) :
-	grade(grade)
+Monomial::Monomial(int degree, double coefficient) :
+	degree(degree)
 {
-	if (grade < 0)
+	if (degree < 0)
 	{
-		string msg = "A monomial has non-negative grade, invalid grade " + grade;
+		string msg = "A monomial has non-negative degree, invalid degree " + degree;
 		throw runtime_error(msg);
 	}
 	setCoefficient(coefficient);
@@ -30,7 +30,7 @@ double Monomial::getCoefficient() const
 
 double Monomial::eval(double x) const
 {
-	return coefficient * pow(x, grade);
+	return coefficient * pow(x, degree);
 }
 
 string Monomial::toString() const
@@ -46,10 +46,10 @@ string Monomial::toString() const
 	{
 		c = to_string(fabs(coefficient));
 	}
-	switch (grade)
+	switch (degree)
 	{
 	case 0: return sign + c;
 	case 1: return sign + c + "x";
 	}
-	return sign + c + "x^" + to_string(grade);
+	return sign + c + "x^" + to_string(degree);
 }

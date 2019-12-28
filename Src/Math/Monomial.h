@@ -20,15 +20,15 @@ class Monomial
 {
 
 private:
-	const int grade;
+	const int degree;
 	double coefficient;
 
 public:
-	Monomial(int grade, double coefficient);
+	Monomial(int, double);
 
-	void setCoefficient(double coefficient);
+	void setCoefficient(double);
 	double getCoefficient() const;
-	double eval(double x) const;
+	double eval(double) const;
 	string toString() const;
 
 };
