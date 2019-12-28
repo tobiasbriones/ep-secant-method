@@ -23,6 +23,7 @@ private:
     int iterationsNumber;
     double root;
     double froot;
+    bool rootFound;
 
 protected:
     string getName() const;

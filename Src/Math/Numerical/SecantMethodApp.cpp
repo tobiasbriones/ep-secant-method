@@ -78,7 +78,10 @@ bool SecantMethodApp::execute()
 		if (pPolynomial->eval(0) == 0)
 		{
 			const string msg = "Every real number is a zero of the constant polynomial P(x) = " + pPolynomial->toString();
-			
+			root = 0;
+			froot = 0;
+			rootFound = true;
+
 			cout << msg << endl;
 		}
 		else
@@ -114,6 +117,7 @@ bool SecantMethodApp::execute()
 		}
 	}
 	froot = fcurrent;
+	rootFound = hasFinished;
 	return true;
 }
 
@@ -122,9 +126,20 @@ void SecantMethodApp::showResults() const
 	printf("\n");
 	printf("# of iterations: %d", iterationsNumber);
 	printf("\n");
-	printf("Root at x = %f", root);
-	printf("\n");
-	printf("P(x) = %f", froot);
+	if (rootFound)
+	{
+		printf("Root at x = %f", root);
+		printf("\n");
+		printf("P(x) = %f", froot);
+	}
+	else
+	{
+		printf("A root wasn't found");
+		printf("\n");
+		printf("Last iteration at x = %f", root);
+		printf("\n");
+		printf("P(x) = %f", froot);
+	}
 	printf("\n");
 }
 
@@ -136,6 +151,7 @@ void SecantMethodApp::reset()
     iterationsNumber = 0;
     root = 0;
     froot = 0;
+	rootFound = false;
 
     delete pPolynomial;
     pPolynomial = NULL;

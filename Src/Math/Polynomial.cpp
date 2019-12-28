@@ -79,6 +79,10 @@ string Polynomial::toString()
 			positive = true;
 		}
 	}
+	if (str == "")
+	{
+		str = "0";
+	}
 	return str;
 }
 
