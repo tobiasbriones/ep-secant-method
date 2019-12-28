@@ -14,25 +14,47 @@ void NumericalMethodApp::clearScreen() const
 
 void NumericalMethodApp::showWelcome() const
 {
-	printf("*********************************************************");
+	string method = getName();
+	int nameL = 29;
+	int nameR = 70 - (nameL + method.length());
+
+	printf("                    **********************************************************************                    ");
 	printf("\n");
-	printf("*                                                       *");
+	printf("                    *                                                                    *                    ");
 	printf("\n");
-	printf("*                    EXAMPLE PROJECT                    *");
+	printf("                    *                          EXAMPLE PROJECT                           *                    ");
 	printf("\n");
-	printf("*                                                       *");
+	printf("                    *                                                                    *                    ");
 	printf("\n");
-	printf("*********************************************************");
+	printf("                    *____________________________________________________________________*                    ");
 	printf("\n");
-	printf("*                                                       *");
+	printf("                    *                                                                    *                    ");
 	printf("\n");
-	printf("*                   NUMERICAL ANALYSIS                  *");
+	printf("                    *                          NUMERICAL ANALYSIS                        *                    ");
 	printf("\n");
-	printf("*                                                       *");
+	printf("                    *                                                                    *                    ");
 	printf("\n");
-	printf("* %s METHOD", getName().c_str());
+	printf("                    *");
+	for (int i = 1; i < 70; i++)
+	{
+		if (i < nameL || i > nameL + method.length())
+		{
+			printf(" ");
+		}
+		else
+		{
+			string insert = method + " METHOD";
+			
+			printf(insert.c_str());
+			i += insert.length();
+		}
+	}
+	printf("*                    ");
 	printf("\n");
-	printf("*********************************************************");
+	printf("                    *                                                                    *                    ");
+	printf("\n");
+	printf("                       ****************************************************************                       ");
+	printf("\n");
 	printf("\n");
 }
 
