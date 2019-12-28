@@ -29,6 +29,6 @@ public:
 	void setCoefficient(double);
 	double getCoefficient() const;
 	double eval(double) const;
-	string toString() const;
+	string toString(bool = true) const;
 
 };

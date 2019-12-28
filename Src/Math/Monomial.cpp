@@ -33,18 +33,52 @@ double Monomial::eval(double x) const
 	return coefficient * pow(x, degree);
 }
 
-string Monomial::toString() const
+string Monomial::toString(bool positive) const
 {
 	string sign = (coefficient < 0) ? " - " : " + ";
 	string c;
 
-	if (coefficient == floor(coefficient))
+	if (coefficient == 0)
 	{
-		c = to_string(abs(coefficient));
+		return "";
+	}
+	// If positive is false and the sign is positive, skip it
+	if (!positive && sign == " + ")
+	{
+		sign = "";
+	}
+
+	// Coefficient is -1 or 1
+	if (coefficient == -1 || coefficient == 1)
+	{
+		if (degree > 0)
+		{
+			c = "";
+		}
 	}
 	else
 	{
-		c = to_string(fabs(coefficient));
+		// Coefficient is integer
+		if (coefficient == floor(coefficient))
+		{
+			c = to_string(abs(coefficient));
+			c = c.substr(0, c.find("."));
+		}
+		// Coefficient is decimal
+		else
+		{
+			c = to_string(fabs(coefficient));
+			int end = c.length() - 1;
+
+			if (c[end] == '0')
+			{
+				do
+				{
+					end--;
+				} while (c[end] == '0');
+				c = c.substr(0, end + 1);
+			}
+		}
 	}
 	switch (degree)
 	{

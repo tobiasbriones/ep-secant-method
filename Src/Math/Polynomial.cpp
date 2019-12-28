@@ -68,10 +68,16 @@ string Polynomial::toString()
 {
 	vector<Monomial>::iterator it;
 	string str = "";
+	bool positive = false;
 
 	for (it = monomials.begin(); it != monomials.end(); it++)
 	{
-		str += (*it).toString();
+		str += (*it).toString(positive);
+
+		if (str != "")
+		{
+			positive = true;
+		}
 	}
 	return str;
 }
