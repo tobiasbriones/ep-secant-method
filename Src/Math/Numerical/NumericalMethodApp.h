@@ -10,11 +10,13 @@
 #include <stdio.h>
 #include <iostream>
 #include <conio.h>
+#include <stdexcept>
 
 using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
+using std::runtime_error;
 
 /// <summary>
 /// Defines an abstract class for creating a console app that solves numerical analysis problems.
@@ -24,6 +26,7 @@ class NumericalMethodApp
 
 private:
     void clearScreen() const;
+    bool askToContinue(string) const;
 
 protected:
     /// <summary>
@@ -37,12 +40,18 @@ protected:
     /// <summary>
     /// Gets the basic input from the user required to execute the algorithm.
     /// </summary>
-    virtual void gatherInput() = 0;
+    /// <returns>
+    /// Returns true if and only if the app obtained valid user input
+    /// </returns>
+    virtual bool gatherInput() = 0;
 
     /// <summary>
     /// Executes the algorithm to produce the result of the numerical analysis.
     /// </summary>
-    virtual void execute() = 0;
+    /// <returns>
+    /// Returns true if and only if the app successfully executed the computation
+    /// </returns>
+    virtual bool execute() = 0;
 
     /// <summary>
     /// Shows the results obtained from the program.
@@ -66,6 +75,22 @@ protected:
     /// Returns true if and only if the app will continue executing for a new problem to compute
     /// </returns>
     bool showFooter() const;
+
+    /// <summary>
+    /// Asks an integer from the user input. It throws runtime error only if the user input is invalid.
+    /// </summary>
+    /// <returns>
+    /// Returns the integer number the user entered
+    /// </returns>
+    int getInt(string msg) const;
+
+    /// <summary>
+    /// Asks a double from the user input. It throws runtime error only if the user input is invalid.
+    /// </summary>
+    /// <returns>
+    /// Returns the double number the user entered
+    /// </returns>
+    double getDouble(string msg) const;
 
 public:
     /// <summary>

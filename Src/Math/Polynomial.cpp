@@ -12,7 +12,7 @@ Polynomial::Polynomial(int degree) :
 {
 	if (degree < 0)
 	{
-		string msg = "A polynomial has non-negative degree, invalid degree " + degree;
+		string msg = "A polynomial has non-negative degree, invalid degree " + to_string(degree);
 		throw runtime_error(msg);
 	}
 	for (int i = 0; i < degree; i++)

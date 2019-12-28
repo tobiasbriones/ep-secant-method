@@ -23,39 +23,40 @@ SecantMethodApp::~SecantMethodApp()
     pPolynomial = NULL;
 }
 
+// --------------------------------------------- NUMERICAL METHOD APP --------------------------------------------- //
 string SecantMethodApp::getName() const
 {
     return "SECANT";
 }
 
-void SecantMethodApp::gatherInput()
+bool SecantMethodApp::gatherInput()
 {
-	printf("Enter the polynomial degree\n");
-	cin >> n;
-	if (n < 0)
+	try
 	{
-		printf("The polynomial degree must be a non-negative integer");
-		system("pause");
-		return;
-	}
-	pPolynomial = new Polynomial(n);
+		n = getInt("Enter the polynomial degree: ");
+		pPolynomial = new Polynomial(n);
 
-	for (int i = 0; i <= n; i++)
+		for (int i = 0; i <= n; i++)
+		{
+			double coefficient = getDouble("Enter the coefficient " + to_string(i) + ": ");
+
+			pPolynomial->setCoefficient(i, coefficient);
+		}
+		cout << "Computing the roots for: " << pPolynomial->toString() << endl << endl;
+		a = getDouble("Enter a: ");
+		b = getDouble("Enter b: ");
+	}
+	catch (const runtime_error & e)
 	{
-		double coefficient;
-
-		printf("Enter the coefficient %d: ", i);
-		cin >> coefficient;
-		pPolynomial->setCoefficient(i, coefficient);
+		printf("\n");
+		printf(e.what());
+		printf("\n");
+		return false;
 	}
-	cout << "Computing the roots for: " << pPolynomial->toString() << endl;
-	printf("Enter a:\n");
-	cin >> a;
-	printf("Enter b:\n");
-	cin >> b;
+	return true;
 }
 
-void SecantMethodApp::execute()
+bool SecantMethodApp::execute()
 {
 	// The method doesn't apply for constant polynomials as you have to divide by zero in that case
 	if (pPolynomial->isConstant())
@@ -85,6 +86,7 @@ void SecantMethodApp::execute()
 		iterationsNumber++;
 	}
 	froot = fcurrent;
+	return true;
 }
 
 void SecantMethodApp::showResults() const

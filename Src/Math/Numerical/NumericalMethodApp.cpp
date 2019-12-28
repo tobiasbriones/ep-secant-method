@@ -12,9 +12,17 @@ void NumericalMethodApp::clearScreen() const
 	cout << "\033[2J\033[1;1H";
 }
 
+bool NumericalMethodApp::askToContinue(string msg) const
+{
+	printf("\n");
+	printf(msg.c_str());
+	printf("\n");
+	return _getch() == 13;
+}
+
 void NumericalMethodApp::showWelcome() const
 {
-	string method = getName();
+	const string method = getName();
 
 	printf("                      ******************************************************************                      ");
 	printf("\n");
@@ -64,10 +72,39 @@ bool NumericalMethodApp::showFooter() const
 	printf("Learn more by accessing the Example Projects at https://tobiasbriones.engineer/ or https://github.com/TobiasBriones/");
 	printf("\n");
 	printf("\n");
-	printf("\n");
-	printf("Press ENTER to continue, other key to exit");
-	printf("\n");
-	return _getch() == 13;
+	return askToContinue("Press ENTER to continue, other key to exit");
+}
+
+int NumericalMethodApp::getInt(string msg) const
+{
+	int n;
+
+	printf(msg.c_str());
+	cin >> n;
+
+	if (!cin.good())
+	{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		throw runtime_error("Please enter an integer number");
+	}
+	return n;
+}
+
+double NumericalMethodApp::getDouble(string msg) const
+{
+	double n;
+
+	printf(msg.c_str());
+	cin >> n;
+
+	if (!cin.good())
+	{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		throw runtime_error("Please enter a real number");
+	}
+	return n;
 }
 
 void NumericalMethodApp::run()
@@ -76,12 +113,27 @@ void NumericalMethodApp::run()
 
 	do
 	{
+		reset();
 		clearScreen();
 		showWelcome();
-		gatherInput();
-		execute();
+		while (!gatherInput())
+		{
+			printf("\n");
+			printf("\n");
+		}
+		if (!execute())
+		{
+			if (askToContinue("Press ENTER to restart, other key to exit"))
+			{
+				continue;
+			}
+			else
+			{
+				isRunning = showFooter();
+				continue;
+			}
+		}
 		showResults();
 		isRunning = showFooter();
-		reset();
 	} while (isRunning);
 }

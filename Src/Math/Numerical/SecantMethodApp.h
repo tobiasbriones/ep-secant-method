@@ -25,8 +25,8 @@ private:
 
 protected:
     string getName() const;
-    void gatherInput();
-    void execute();
+    bool gatherInput();
+    bool execute();
     void showResults() const;
     void reset();
     
