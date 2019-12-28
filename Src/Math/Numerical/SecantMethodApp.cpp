@@ -42,9 +42,18 @@ bool SecantMethodApp::gatherInput()
 
 			pPolynomial->setCoefficient(i, coefficient);
 		}
-		cout << "Computing the roots for: " << pPolynomial->toString() << endl << endl;
+		cout << "Computing the roots for: P(x) = " << pPolynomial->toString() << endl << endl;
 		a = getDouble("Enter a: ");
 		b = getDouble("Enter b: ");
+
+		if (a == b)
+		{
+			throw runtime_error("a = b is not allowed, choose a < b");
+		}
+		if (pPolynomial->eval(a) == pPolynomial->eval(b))
+		{
+			throw runtime_error("P(a) = P(b) is not allowed, choose a < b such that P(a) != P(b)");
+		}
 	}
 	catch (const runtime_error & e)
 	{
@@ -63,8 +72,17 @@ bool SecantMethodApp::execute()
 	{
 		if (pPolynomial->eval(0) == 0)
 		{
-
+			const string msg = "Every real number is a zero of the constant polynomial P(x) = " + pPolynomial->toString();
+			
+			cout << msg << endl;
 		}
+		else
+		{
+			const string msg = "The constant polynomial P(x) = " + pPolynomial->toString() + " has no roots";
+
+			cout << msg << endl;
+		}
+		return true;
 	}
 	double previousPrevious = a;
 	double previous = b;
@@ -92,7 +110,7 @@ bool SecantMethodApp::execute()
 void SecantMethodApp::showResults() const
 {
 	printf("\n");
-	printf("# iterations: %d", iterationsNumber);
+	printf("# of iterations: %d", iterationsNumber);
 	printf("\n");
 	printf("Root at x = %f", root);
 	printf("\n");
