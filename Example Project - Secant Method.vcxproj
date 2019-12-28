@@ -98,12 +98,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Math\Numerical\NumericalMethodApp.cpp" />
     <ClCompile Include="Src\Math\Monomial.cpp" />
+    <ClCompile Include="Src\Math\Numerical\SecantMethodApp.cpp" />
     <ClCompile Include="Src\Math\Polynomial.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Math\Numerical\NumericalMethodApp.h" />
     <ClInclude Include="Src\Math\Monomial.h" />
+    <ClInclude Include="Src\Math\Numerical\SecantMethodApp.h" />
     <ClInclude Include="Src\Math\Polynomial.h" />
     <ClInclude Include="resources\resource.h" />
   </ItemGroup>
