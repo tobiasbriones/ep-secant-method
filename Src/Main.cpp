@@ -10,7 +10,6 @@
 int main()
 {
     SecantMethodApp app;
-
     app.run();
 	return 0;
 }

@@ -9,6 +9,7 @@
 #include <string>
 #include <stdio.h>
 #include <iostream>
+#include <conio.h>
 
 using std::string;
 using std::cout;

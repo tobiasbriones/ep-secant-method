@@ -66,8 +66,8 @@ bool NumericalMethodApp::showFooter() const
 	printf("\n");
 	printf("\n");
 	printf("Press ENTER to continue, other key to exit");
-	cin.get();
-	return cin.get() == (int) '\n';
+	printf("\n");
+	return _getch() == 13;
 }
 
 void NumericalMethodApp::run()
