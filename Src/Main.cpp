@@ -13,6 +13,7 @@ using std::cout;
 using std::endl;
 using std::cin;
 
+const int ERROR = pow(10, -4);
 
 double getRootBySecantMethod(double a, double b, Polynomial& polynomial, double error, double& froot, int& i)
 {
@@ -54,7 +55,6 @@ double getRootBySecantMethod(double a, double b, Polynomial& polynomial, double 
 
 void run()
 {
-	double error = pow(10, -4);
 	int n;
 	double a;
 	double b;
@@ -85,7 +85,7 @@ void run()
 	cin >> b;
 	int i = 0;
 	double froot = -1;
-	double root = getRootBySecantMethod(a, b, polynomial, error, froot, i);
+	double root = getRootBySecantMethod(a, b, polynomial, ERROR, froot, i);
 
 	printf("\n");
 	printf("Iteraciones: %d", i);

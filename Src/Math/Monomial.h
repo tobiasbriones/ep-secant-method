@@ -19,55 +19,16 @@ using std::to_string;
 class Monomial
 {
 
-public:
+private:
 	const int grade;
 	double coefficient;
 
-	Monomial(int grade, double coefficient) :
-		grade(grade)
-	{
-		if (grade < 0)
-		{
-			string msg = "A monomial has non-negative grade, invalid grade " + grade;
-			throw runtime_error(msg);
-		}
-		setCoefficient(coefficient);
-	}
+public:
+	Monomial(int grade, double coefficient);
 
-	void setCoefficient(double coefficient)
-	{
-		this->coefficient = coefficient;
-	}
-
-	double getCoefficient() const
-	{
-		return coefficient;
-	}
-
-	double eval(double x) const
-	{
-		return coefficient * pow(x, grade);
-	}
-
-	string toString() const
-	{
-		string sign = (coefficient < 0) ? " - " : " + ";
-		string c;
-
-		if (coefficient == floor(coefficient))
-		{
-			c = to_string(abs(coefficient));
-		}
-		else
-		{
-			c = to_string(fabs(coefficient));
-		}
-		switch (grade)
-		{
-		case 0: return sign + c;
-		case 1: return sign + c + "x";
-		}
-		return sign + c + "x^" + to_string(grade);
-	}
+	void setCoefficient(double coefficient);
+	double getCoefficient() const;
+	double eval(double x) const;
+	string toString() const;
 
 };
