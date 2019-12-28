@@ -6,20 +6,12 @@
  */
 
 #include "Math/Numerical/SecantMethodApp.h"
+#include "../Test/SecantTest.h"
 
 int main()
 {
     SecantMethodApp app;
-    
-    Polynomial p(4);
 
-    p.setCoefficient(0, 1);
-    p.setCoefficient(1, 0);
-    p.setCoefficient(2, 2);
-    p.setCoefficient(3, 1);
-    p.setCoefficient(4, 4);
-    cout << p.eval(0);
-    
     app.run();
 	return 0;
 }

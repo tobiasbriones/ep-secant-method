@@ -92,35 +92,11 @@ bool SecantMethodApp::execute()
 		}
 		return true;
 	}
-	double previousPrevious = a;
-	double previous = b;
-	double current;
-	double fcurrent;
-	double errorFactor = (1 / ERROR) / 10;
-	bool hasFinished = false;
-
 	printf("Error for the computation: %f \n", ERROR);
+	printf("Threshold: %d \n", THRESHOLD);
 	printf("Running the secant method iterations... \n");
-	while (!hasFinished)
-	{
-		double fpreviousPrevious = pPolynomial->eval(previousPrevious);
-		double fprevious = pPolynomial->eval(previous);
-
-		current = previousPrevious - fpreviousPrevious * ((previous - previousPrevious) / (fprevious - fpreviousPrevious));
-		fcurrent = pPolynomial->eval(current);
-		previousPrevious = previous;
-		previous = current;
-		hasFinished = (fabs(fcurrent) * errorFactor) < 1;
-		iterationsNumber++;
-
-		if (iterationsNumber == THRESHOLD)
-		{
-			break;
-		}
-	}
-	root = current;
-	froot = fcurrent;
-	rootFound = hasFinished;
+	root = compute(*pPolynomial, a, b, ERROR, THRESHOLD, rootFound, iterationsNumber);
+	froot = pPolynomial->eval(root);
 	return true;
 }
 
@@ -163,4 +139,35 @@ void SecantMethodApp::reset()
 
     delete pPolynomial;
     pPolynomial = NULL;
+}
+
+// --------------------------------------------- STATIC METHODS --------------------------------------------- //
+double SecantMethodApp::compute(Polynomial& p, double a, double b, double error, double threshold, bool& wasFound, int& iterationsNumber)
+{
+	double previousPrevious = a;
+	double previous = b;
+	double current;
+	double fcurrent;
+	double errorFactor = (1 / error) / 10;
+	bool hasFinished = false;
+
+	while (!hasFinished)
+	{
+		double fpreviousPrevious = p.eval(previousPrevious);
+		double fprevious = p.eval(previous);
+
+		current = previousPrevious - fpreviousPrevious * ((previous - previousPrevious) / (fprevious - fpreviousPrevious));
+		fcurrent = p.eval(current);
+		previousPrevious = previous;
+		previous = current;
+		hasFinished = (fabs(fcurrent) * errorFactor) < 1;
+		iterationsNumber++;
+
+		if (iterationsNumber == THRESHOLD)
+		{
+			break;
+		}
+	}
+	wasFound = hasFinished;
+	return current;
 }

@@ -103,6 +103,7 @@
     <ClCompile Include="Src\Math\Numerical\SecantMethodApp.cpp" />
     <ClCompile Include="Src\Math\Polynomial.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="Test\SecantTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Math\Numerical\NumericalMethodApp.h" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Src\Math\Numerical\SecantMethodApp.h" />
     <ClInclude Include="Src\Math\Polynomial.h" />
     <ClInclude Include="resources\resource.h" />
+    <ClInclude Include="Test\SecantTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources\Resource.rc" />

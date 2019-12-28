@@ -30,6 +30,9 @@
     <ClCompile Include="Src\Math\Numerical\SecantMethodApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Test\SecantTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resources\resource.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Math\Numerical\NumericalMethodApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\SecantTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
