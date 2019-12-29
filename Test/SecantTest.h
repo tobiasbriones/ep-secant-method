@@ -23,9 +23,10 @@ struct Result
 
 };
 
+bool comparePrecision(double, double);
 void testPolynomial(Polynomial&, double, double, Result);
 void testForConstantPolynomials();
-void testForGradeOnePolynomial();
+void testForDegreeOnePolynomial();
 void testForConstantMonomialZero();
 void testForMixedPolynomial();
 void testForPolynomialsWithDecimals();

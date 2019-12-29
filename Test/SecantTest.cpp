@@ -15,6 +15,11 @@ void Result::set(double root, double froot, int i, bool wasFound)
     this->wasFound = wasFound;
 }
 
+bool comparePrecision(double value1, double value2)
+{
+    return abs(value1 - value2) < ERROR;
+}
+
 void testPolynomial(Polynomial& p, double a, double b, Result expected)
 {
     bool rootFound;
@@ -37,9 +42,9 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected)
     // If a root was successfully found then test the results
     if (rootFound)
     {
-        bool passedRoot = root == expected.root;
-        bool passedFRoot = root == expected.froot;
-        bool passedIterations = root == expected.iterations;
+        bool passedRoot = comparePrecision(root, expected.root);
+        bool passedFRoot = comparePrecision(froot, expected.froot);
+        bool passedIterations = i == expected.iterations;
         passed &= passedRoot && passedFRoot && passedIterations;
 
         // If it didn't pass the previous tests, show the information
@@ -83,10 +88,11 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected)
 
 void testForConstantPolynomials()
 {
-    double a;
-    double b;
     Result expected;
     Polynomial p(0);
+
+    printf("                   TESTING FOR CONSTANT POLYNOMIALS                   ");
+    printf("\n");
 
     // P(x) = -20
     p.setCoefficient(0, -20);
@@ -112,11 +118,48 @@ void testForConstantPolynomials()
     p.setCoefficient(0, 20);
     expected.set(0, 0, 0, false);
     testPolynomial(p, -1, 1, expected);
+
+    printf("   ________________________________________________________________   ");
+    printf("\n");
+    printf("\n");
 }
 
-void testForGradeOnePolynomial()
+void testForDegreeOnePolynomial()
 {
-    
+    Result expected;
+    Polynomial p(1);
+
+    printf("                  TESTING FOR DEGREE ONE POLYNOMIALS                  ");
+    printf("\n");
+
+    // P(x) = x
+    p.set({0, 1});
+    expected.set(0, 0, 1);
+    testPolynomial(p, -1, 1, expected);
+
+    // P(x) = -1 + x
+    p.set({-1, 1});
+    expected.set(1, 0, 1);
+    testPolynomial(p, -5, 5, expected);
+
+    // P(x) = 1 + x
+    p.set({1, 1});
+    expected.set(-1, 0, 1);
+    testPolynomial(p, -5, 5, expected);
+
+    // P(x) = 10 - 25.82x
+    p.set({10, -25.82});
+    expected.set(0.3873, 0, 1);
+    testPolynomial(p, -5, 5, expected);
+
+    // P(x) = -100 + 2.25x
+    p.set({-100, 2.25});
+    expected.set(44.4444, 0, 1);
+    testPolynomial(p, -5, 5, expected);
+
+    printf("   ________________________________________________________________   ");
+    printf("\n");
+    printf("\n");
 }
 
 void testForConstantMonomialZero()
@@ -157,7 +200,7 @@ void testForFarInitialValues()
 void runAllTests()
 {
     testForConstantPolynomials();
-    testForGradeOnePolynomial();
+    testForDegreeOnePolynomial();
     testForConstantMonomialZero();
     testForMixedPolynomial();
     testForPolynomialsWithDecimals();
