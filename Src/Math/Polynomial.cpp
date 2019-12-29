@@ -46,6 +46,20 @@ void Polynomial::setCoefficient(int monomialDegree, double value)
 	monomials.at(monomialDegree).setCoefficient(value);
 }
 
+void Polynomial::set(vector<double> coefficients)
+{
+	// The implementation for the coefficients can be significantly enhanced but I'll leave this
+	// implementation of this polynomial class as this is an example project
+	if (coefficients.size() != degree + 1)
+	{
+		throw runtime_error("The coefficients must be all exactly set! For each degree 0, 1, 2, ..., n");
+	}
+	for (size_t i = 0; i < coefficients.size(); i++)
+	{
+		setCoefficient(i, coefficients[i]);
+	}
+}
+
 double Polynomial::getCoefficient(int monomialDegree) const
 {
 	return monomials.at(monomialDegree).getCoefficient();

@@ -31,6 +31,7 @@ public:
 
 	int getDegree() const;
 	void setCoefficient(int, double);
+	void set(vector<double>);
 	double getCoefficient(int) const;
 	double eval(double);
 	string toString();

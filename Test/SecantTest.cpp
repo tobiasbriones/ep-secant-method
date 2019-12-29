@@ -86,41 +86,37 @@ void testForConstantPolynomials()
     double a;
     double b;
     Result expected;
-    Polynomial p1(0);
-    Polynomial p2(0);
-    Polynomial p3(0);
-    Polynomial p4(0);
-    Polynomial p5(0);
+    Polynomial p(0);
 
     // P(x) = -20
-    p1.setCoefficient(0, -20);
+    p.setCoefficient(0, -20);
     expected.set(0, 0, 0, false);
-    testPolynomial(p1, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected);
     
     // P(x) = -1
-    p2.setCoefficient(0, -1);
+    p.setCoefficient(0, -1);
     expected.set(0, 0, 0, false);
-    testPolynomial(p2, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected);
 
     // P(x) = 0
-    p3.setCoefficient(0, 0);
+    p.setCoefficient(0, 0);
     expected.set(0, 0, 0, true);
-    testPolynomial(p3, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected);
 
     // P(x) = 1
-    p4.setCoefficient(0, 1);
+    p.setCoefficient(0, 1);
     expected.set(0, 0, 0, false);
-    testPolynomial(p4, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected);
 
     // P(x) = 20
-    p5.setCoefficient(0, 20);
+    p.setCoefficient(0, 20);
     expected.set(0, 0, 0, false);
-    testPolynomial(p5, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected);
 }
 
 void testForGradeOnePolynomial()
 {
-
+    
 }
 
 void testForConstantMonomialZero()
