@@ -24,14 +24,14 @@ struct Result
 };
 
 bool comparePrecision(double, double);
-void testPolynomial(Polynomial&, double, double, Result);
-void testForConstantPolynomials();
-void testForDegreeOnePolynomial();
-void testForConstantMonomialZero();
-void testForMixedPolynomial();
-void testForPolynomialsWithDecimals();
-void testForBigPolynomials();
-void testForHugePolynomials();
-void testForNonRootPolynomials();
-void testForFarInitialValues();
+void testPolynomial(Polynomial&, double, double, Result, int&, int&);
+void testForConstantPolynomials(int&, int&);
+void testForDegreeOnePolynomial(int&, int&);
+void testForConstantMonomialZero(int&, int&);
+void testForMixedPolynomial(int&, int&);
+void testForPolynomialsWithDecimals(int&, int&);
+void testForBigPolynomials(int&, int&);
+void testForHugePolynomials(int&, int&);
+void testForNonRootPolynomials(int&, int&);
+void testForFarInitialValues(int&, int&);
 void runAllTests();

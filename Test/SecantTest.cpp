@@ -20,7 +20,7 @@ bool comparePrecision(double value1, double value2)
     return abs(value1 - value2) < ERROR;
 }
 
-void testPolynomial(Polynomial& p, double a, double b, Result expected)
+void testPolynomial(Polynomial& p, double a, double b, Result expected, int& passedCount, int& failedCount)
 {
     bool rootFound;
     int i;
@@ -68,6 +68,8 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected)
     printf("Computation error was: %f, threshold: %d\n", ERROR, THRESHOLD);
     if (passed)
     {
+        passedCount++;
+
         if (rootFound)
         {
             printf("Root at x = %f with P(x) = %f and %d iterations\n", root, froot, i);
@@ -80,13 +82,15 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected)
     }
     else
     {
+        failedCount++;
+
         printf("Test for P(x) = %s FAILED\n", p.toString().c_str());
     }
     printf("\n");
     printf("\n");
 }
 
-void testForConstantPolynomials()
+void testForConstantPolynomials(int& passedCount, int& failedCount)
 {
     Result expected;
     Polynomial p(0);
@@ -97,34 +101,34 @@ void testForConstantPolynomials()
     // P(x) = -20
     p.setCoefficient(0, -20);
     expected.set(0, 0, 0, false);
-    testPolynomial(p, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected, passedCount, failedCount);
     
     // P(x) = -1
     p.setCoefficient(0, -1);
     expected.set(0, 0, 0, false);
-    testPolynomial(p, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected, passedCount, failedCount);
 
     // P(x) = 0
     p.setCoefficient(0, 0);
     expected.set(0, 0, 0, true);
-    testPolynomial(p, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected, passedCount, failedCount);
 
     // P(x) = 1
     p.setCoefficient(0, 1);
     expected.set(0, 0, 0, false);
-    testPolynomial(p, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected, passedCount, failedCount);
 
     // P(x) = 20
     p.setCoefficient(0, 20);
     expected.set(0, 0, 0, false);
-    testPolynomial(p, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected, passedCount, failedCount);
 
     printf("   ________________________________________________________________   ");
     printf("\n");
     printf("\n");
 }
 
-void testForDegreeOnePolynomial()
+void testForDegreeOnePolynomial(int& passedCount, int& failedCount)
 {
     Result expected;
     Polynomial p(1);
@@ -135,77 +139,84 @@ void testForDegreeOnePolynomial()
     // P(x) = x
     p.set({0, 1});
     expected.set(0, 0, 1);
-    testPolynomial(p, -1, 1, expected);
+    testPolynomial(p, -1, 1, expected, passedCount, failedCount);
 
     // P(x) = -1 + x
     p.set({-1, 1});
     expected.set(1, 0, 1);
-    testPolynomial(p, -5, 5, expected);
+    testPolynomial(p, -5, 5, expected, passedCount, failedCount);
 
     // P(x) = 1 + x
     p.set({1, 1});
     expected.set(-1, 0, 1);
-    testPolynomial(p, -5, 5, expected);
+    testPolynomial(p, -5, 5, expected, passedCount, failedCount);
 
     // P(x) = 10 - 25.82x
     p.set({10, -25.82});
     expected.set(0.3873, 0, 1);
-    testPolynomial(p, -5, 5, expected);
+    testPolynomial(p, -5, 5, expected, passedCount, failedCount);
 
     // P(x) = -100 + 2.25x
     p.set({-100, 2.25});
     expected.set(44.4444, 0, 1);
-    testPolynomial(p, -5, 5, expected);
+    testPolynomial(p, -5, 5, expected, passedCount, failedCount);
 
     printf("   ________________________________________________________________   ");
     printf("\n");
     printf("\n");
 }
 
-void testForConstantMonomialZero()
+void testForConstantMonomialZero(int& passedCount, int& failedCount)
 {
 
 }
 
-void testForMixedPolynomial()
+void testForMixedPolynomial(int& passedCount, int& failedCount)
 {
 
 }
 
-void testForPolynomialsWithDecimals()
+void testForPolynomialsWithDecimals(int& passedCount, int& failedCount)
 {
 
 }
 
-void testForBigPolynomials()
+void testForBigPolynomials(int& passedCount, int& failedCount)
 {
 
 }
 
-void testForHugePolynomials()
+void testForHugePolynomials(int& passedCount, int& failedCount)
 {
 
 }
 
-void testForNonRootPolynomials()
+void testForNonRootPolynomials(int& passedCount, int& failedCount)
 {
 
 }
 
-void testForFarInitialValues()
+void testForFarInitialValues(int& passedCount, int& failedCount)
 {
 
 }
 
 void runAllTests()
 {
-    testForConstantPolynomials();
-    testForDegreeOnePolynomial();
-    testForConstantMonomialZero();
-    testForMixedPolynomial();
-    testForPolynomialsWithDecimals();
-    testForBigPolynomials();
-    testForHugePolynomials();
-    testForNonRootPolynomials();
-    testForFarInitialValues();
+    int testsPassed = 0;
+    int testsFailed = 0;
+
+    testForConstantPolynomials(testsPassed, testsFailed);
+    testForDegreeOnePolynomial(testsPassed, testsFailed);
+    testForConstantMonomialZero(testsPassed, testsFailed);
+    testForMixedPolynomial(testsPassed, testsFailed);
+    testForPolynomialsWithDecimals(testsPassed, testsFailed);
+    testForBigPolynomials(testsPassed, testsFailed);
+    testForHugePolynomials(testsPassed, testsFailed);
+    testForNonRootPolynomials(testsPassed, testsFailed);
+    testForFarInitialValues(testsPassed, testsFailed);
+    printf("\n");
+    printf("%d Tests completed. Succeeded tests: %d, Failed tests: %d", testsPassed + testsFailed, testsPassed, testsFailed);
+    printf("\n");
+    printf("\n");
 }
