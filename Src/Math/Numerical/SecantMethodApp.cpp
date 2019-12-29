@@ -78,9 +78,6 @@ bool SecantMethodApp::execute()
 		if (pPolynomial->eval(0) == 0)
 		{
 			const string msg = "Every real number is a zero of the constant polynomial P(x) = " + pPolynomial->toString();
-			root = 0;
-			froot = 0;
-			rootFound = true;
 
 			cout << msg << endl;
 		}
@@ -90,7 +87,6 @@ bool SecantMethodApp::execute()
 
 			cout << msg << endl;
 		}
-		return true;
 	}
 	printf("Error for the computation: %f \n", ERROR);
 	printf("Threshold: %d \n", THRESHOLD);
@@ -142,8 +138,9 @@ void SecantMethodApp::reset()
 }
 
 // --------------------------------------------- STATIC METHODS --------------------------------------------- //
-double SecantMethodApp::compute(Polynomial& p, double a, double b, double error, double threshold, bool& wasFound, int& iterationsNumber)
+double SecantMethodApp::compute(Polynomial& p, double a, double b, double error, int threshold, bool& wasFound, int& iterationsNumber)
 {
+	iterationsNumber = 0;
 	double previousPrevious = a;
 	double previous = b;
 	double current;
@@ -151,6 +148,19 @@ double SecantMethodApp::compute(Polynomial& p, double a, double b, double error,
 	double errorFactor = (1 / error) / 10;
 	bool hasFinished = false;
 
+	// The method doesn't apply for constant polynomials as you have to divide by zero in that case
+	if (p.isConstant())
+	{
+		if (p.eval(0) == 0)
+		{
+			wasFound = true;
+		}
+		else
+		{
+			wasFound = false;
+		}
+		return 0;
+	}
 	while (!hasFinished)
 	{
 		double fpreviousPrevious = p.eval(previousPrevious);

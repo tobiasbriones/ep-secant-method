@@ -36,6 +36,6 @@ public:
     SecantMethodApp();
     ~SecantMethodApp();
 
-    static double compute(Polynomial&, double, double, double, double, bool&, int&);
+    static double compute(Polynomial&, double, double, double, int, bool&, int&);
 
 };
