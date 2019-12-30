@@ -195,34 +195,70 @@ void testForConstantMonomialZero(int& passedCount, int& failedCount)
     printf("\n");
 }
 
-void testForMixedPolynomial(int& passedCount, int& failedCount)
-{
-
-}
-
 void testForPolynomialsWithDecimals(int& passedCount, int& failedCount)
 {
 
-}
+    Result expected;
+    Polynomial p1(7);
 
-void testForBigPolynomials(int& passedCount, int& failedCount)
-{
+    printf("                 TESTING FOR POLYNOMIALS WITH DECIMALS                ");
+    printf("\n");
 
-}
+    // P(x) = -0.0094 - 5x^2 + 0.025x^3 + 0.325x^5 + 54.0223x^6 + 211.3541x^7
+    p1.set({ -0.0094, 0, -5, 0.025, 0, 0.325, 54.0223, 211.3541 });
+    expected.set(0.4311, -0.0002, 9);
+    testPolynomial(p1, 0.3, 0.5, expected, passedCount, failedCount);
 
-void testForHugePolynomials(int& passedCount, int& failedCount)
-{
-
+    printf("   ________________________________________________________________   ");
+    printf("\n");
+    printf("\n");
 }
 
 void testForNonRootPolynomials(int& passedCount, int& failedCount)
 {
+    Result expected;
+    Polynomial p1(4);
+    Polynomial p2(2);
 
+    printf("                 TESTING FOR POLYNOMIALS WITH NO ROOTS                ");
+    printf("\n");
+
+    // P(x) = 100 + 5x^3 + 500x^4
+    p1.set({ 100, 0, 0, 5, 500 });
+    expected.set(0, 0, THRESHOLD, false);
+    testPolynomial(p1, -5, 5, expected, passedCount, failedCount);
+
+    // P(x) = -0.8 + 0.33x + 2.3584x^2 - 3.3054x^4
+    p1.set({ -0.8, 0.33, 2.3584, 0, -3.25 });
+    expected.set(0, 0, THRESHOLD, false);
+    testPolynomial(p1, -5, 5, expected, passedCount, failedCount);
+
+    // P(x) = 5 + 2x^2
+    p2.set({ 5, 0, 2 });
+    expected.set(0, 0, THRESHOLD, false);
+    testPolynomial(p2, -5, 5, expected, passedCount, failedCount);
+
+    printf("   ________________________________________________________________   ");
+    printf("\n");
+    printf("\n");
 }
 
-void testForFarInitialValues(int& passedCount, int& failedCount)
+void testForHugePolynomials(int& passedCount, int& failedCount)
 {
+    Result expected;
+    Polynomial p(20);
 
+    printf("                     TESTING FOR HUGE POLYNOMIALS                     ");
+    printf("\n");
+
+    // P(x) = 5 + 23.2x - 85x^2 - 0.21x^3 + 50x^4 - 0.24x^7 + 54.35x^8 + 9x^9 - 45.5x^10 - 25x^11 + 2.25x^14 - 55.254x^15 - 54x^17 + 5.35x^18 + 2.3254x^19 - 0.025x^20
+    p.set({ 5, 23.2, -85, -0.21, 50, 0, 0, -0.24, 54.35, 9, -45.5, -25, 0, 0, 2.25, -55.254, 0, -54, 5.35, 2.3254, -0.025 });
+    expected.set(0.4599, -0.0008, 3);
+    testPolynomial(p, 0.3, 0.5, expected, passedCount, failedCount);
+
+    printf("   ________________________________________________________________   ");
+    printf("\n");
+    printf("\n");
 }
 
 void runAllTests()
@@ -233,12 +269,9 @@ void runAllTests()
     testForConstantPolynomials(testsPassed, testsFailed);
     testForDegreeOnePolynomial(testsPassed, testsFailed);
     testForConstantMonomialZero(testsPassed, testsFailed);
-    testForMixedPolynomial(testsPassed, testsFailed);
     testForPolynomialsWithDecimals(testsPassed, testsFailed);
-    testForBigPolynomials(testsPassed, testsFailed);
-    testForHugePolynomials(testsPassed, testsFailed);
     testForNonRootPolynomials(testsPassed, testsFailed);
-    testForFarInitialValues(testsPassed, testsFailed);
+    testForHugePolynomials(testsPassed, testsFailed);
     printf("\n");
     printf("%d Tests completed. Succeeded tests: %d, Failed tests: %d", testsPassed + testsFailed, testsPassed, testsFailed);
     printf("\n");
