@@ -91,8 +91,7 @@ bool SecantMethodApp::execute()
 	printf("Error for the computation: %f \n", ERROR);
 	printf("Threshold: %d \n", THRESHOLD);
 	printf("Running the secant method iterations... \n");
-	root = compute(*pPolynomial, a, b, ERROR, THRESHOLD, rootFound, iterationsNumber);
-	froot = pPolynomial->eval(root);
+	root = compute(*pPolynomial, a, b, ERROR, THRESHOLD, rootFound, iterationsNumber, froot);
 	return true;
 }
 
@@ -138,7 +137,12 @@ void SecantMethodApp::reset()
 }
 
 // --------------------------------------------- STATIC METHODS --------------------------------------------- //
-double SecantMethodApp::compute(Polynomial& p, double a, double b, double error, int threshold, bool& wasFound, int& iterationsNumber)
+double SecantMethodApp::roundPrecision(double value, double error)
+{
+	return round(value / error) * error;
+}
+
+double SecantMethodApp::compute(Polynomial& p, double a, double b, double error, int threshold, bool& wasFound, int& iterationsNumber, double& froot)
 {
 	iterationsNumber = 0;
 	double previousPrevious = a;
@@ -154,10 +158,12 @@ double SecantMethodApp::compute(Polynomial& p, double a, double b, double error,
 		if (p.eval(0) == 0)
 		{
 			wasFound = true;
+			froot = 0;
 		}
 		else
 		{
 			wasFound = false;
+			froot = p.eval(0);
 		}
 		return 0;
 	}
@@ -179,5 +185,9 @@ double SecantMethodApp::compute(Polynomial& p, double a, double b, double error,
 		}
 	}
 	wasFound = hasFinished;
-	return current;
+	
+	// Round the solution according to the error used
+	double root = roundPrecision(current, error);
+	froot = roundPrecision(p.eval(root), error);
+	return root;
 }

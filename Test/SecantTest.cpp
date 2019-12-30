@@ -24,12 +24,11 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected, int& pas
 {
     bool rootFound;
     int i;
-    double root = SecantMethodApp::compute(p, a, b, ERROR, THRESHOLD, rootFound, i);
-    double froot = p.eval(root);
+    double froot;
+    double root = SecantMethodApp::compute(p, a, b, ERROR, THRESHOLD, rootFound, i, froot);
     bool passed = true;
 
     printf("Testing polynomial...\n");
-
     // If a root was found but there is actually no root for this call of the algorithm or
     // if there is a root but a root was not found by the algorithm
     // then the test is already failed
@@ -37,6 +36,7 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected, int& pas
     {
         printf("Different outcome, root found is %s but %s was expected\n", rootFound ? "true" : "false", expected.wasFound ? "true" : "false");
         passed = false;
+        printf("It = %d\n", i);
     }
 
     // If a root was successfully found then test the results
@@ -72,7 +72,7 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected, int& pas
 
         if (rootFound)
         {
-            printf("Root at x = %f with P(x) = %f and %d iterations\n", root, froot, i);
+            printf("Root at x = %f with P(x) = %f and %d iterations, with a = %f and b = %f\n", root, froot, i, a, b);
         }
         else
         {
@@ -153,12 +153,12 @@ void testForDegreeOnePolynomial(int& passedCount, int& failedCount)
 
     // P(x) = 10 - 25.82x
     p.set({10, -25.82});
-    expected.set(0.3873, 0, 1);
+    expected.set(0.3873, -0.0001, 1);
     testPolynomial(p, -5, 5, expected, passedCount, failedCount);
 
     // P(x) = -100 + 2.25x
     p.set({-100, 2.25});
-    expected.set(44.4444, 0, 1);
+    expected.set(44.4444, -0.0001, 1);
     testPolynomial(p, -5, 5, expected, passedCount, failedCount);
 
     printf("   ________________________________________________________________   ");
@@ -168,7 +168,31 @@ void testForDegreeOnePolynomial(int& passedCount, int& failedCount)
 
 void testForConstantMonomialZero(int& passedCount, int& failedCount)
 {
+    Result expected;
+    Polynomial p1(4);
+    Polynomial p2(10);
 
+    printf("            TESTING FOR ZERO CONSTANT MONOMIAL POLYNOMIALS            ");
+    printf("\n");
+
+    // P(x) = 5x - 100x^2 + 3.60x^3 + 5x^4
+    p1.set({ 0, 5, -100, 3.60, 5 });
+    expected.set(-4.8695, -0.0327, 14);
+    testPolynomial(p1, -5, 5, expected, passedCount, failedCount);
+
+    // P(x) = 5x - 100x^2 + 3.60x^3 + 5x^4 (p1 again)
+    p1.set({ 0, 5, -100, 3.60, 5 });
+    expected.set(0.0501, 0, 13);
+    testPolynomial(p1, -2, 2, expected, passedCount, failedCount);
+
+    // P(x) = 10x^2 + 8.64x^4 - 50x^5 + 4x^9 + 11.2x^10
+    p2.set({ 0, 0, 10, 0, 8.64, -50, 0, 0, 0, 4, 11.2 });
+    expected.set(1.2068, 0.0026, 28);
+    testPolynomial(p2, -5, 5, expected, passedCount, failedCount);
+
+    printf("   ________________________________________________________________   ");
+    printf("\n");
+    printf("\n");
 }
 
 void testForMixedPolynomial(int& passedCount, int& failedCount)

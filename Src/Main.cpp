@@ -11,9 +11,7 @@
 int main()
 {
     SecantMethodApp app;
-
     //app.run();
-
     runAllTests();
 	return 0;
 }

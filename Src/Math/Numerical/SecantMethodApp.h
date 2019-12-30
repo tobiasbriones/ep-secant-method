@@ -25,6 +25,8 @@ private:
     double froot;
     bool rootFound;
 
+    static double roundPrecision(double value, double error);
+
 protected:
     string getName() const;
     bool gatherInput();
@@ -36,6 +38,6 @@ public:
     SecantMethodApp();
     ~SecantMethodApp();
 
-    static double compute(Polynomial&, double, double, double, int, bool&, int&);
+    static double compute(Polynomial&, double, double, double, int, bool&, int&, double&);
 
 };
