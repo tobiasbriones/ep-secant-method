@@ -11,6 +11,6 @@ If you wish to extend this project just take into account some considerations:
 * I didn't handle when a root was found but outside of [a, b], it's up to you
 * The iterations can be printed, consider when the number of iterations is less than a small number to avoid polluting the console with hundreds of iterations
 
-![screenshot_1](https://github.com/TobiasBriones/example.math.numerical.polynomial.cpp.secant_method/blob/master/_Repo/Assets/Screenshot_1.png)
+[![Screenshot 1](https://raw.githubusercontent.com/TobiasBriones/images/master/example-projects/example.math.numerical.polynomial.cpp.secant-method/screenshot-1.png)](https://github.com/TobiasBriones/images/tree/master/example-projects)
 
-![screenshot_2](https://github.com/TobiasBriones/example.math.numerical.polynomial.cpp.secant_method/blob/master/_Repo/Assets/Screenshot_2.png)
+[![Screenshot 2](https://raw.githubusercontent.com/TobiasBriones/images/master/example-projects/example.math.numerical.polynomial.cpp.secant-method/screenshot-2.png)](https://github.com/TobiasBriones/images/tree/master/example-projects)
