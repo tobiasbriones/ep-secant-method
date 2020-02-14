@@ -5,15 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#include "Math/Numerical/SecantMethodApp.h"
-#include "../Test/SecantTest.h"
-#include "Main.h"
+#pragma once
 
-int main()
-{
-    SecantMethodApp app;
+const char APP_VERSION[] = "1.0";
 
-    app.run();
-    //runAllTests();
-	return 0;
-}
+int main();

@@ -5,15 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#include "Math/Numerical/SecantMethodApp.h"
-#include "../Test/SecantTest.h"
-#include "Main.h"
+#pragma once
+#include <iostream>
+#include "../Main.h"
 
-int main()
-{
-    SecantMethodApp app;
+using std::cout;
+using std::endl;
 
-    app.run();
-    //runAllTests();
-	return 0;
-}
+void printHeader();
+void clear();

@@ -11,6 +11,7 @@
 #include <iostream>
 #include <conio.h>
 #include <stdexcept>
+#include "../../Console/Console.h"
 
 using std::string;
 using std::cout;

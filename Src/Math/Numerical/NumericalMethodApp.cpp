@@ -9,7 +9,7 @@
 
 void NumericalMethodApp::clearScreen() const
 {
-	cout << "\033[2J\033[1;1H";
+	clear();
 }
 
 bool NumericalMethodApp::askToContinue(string msg) const

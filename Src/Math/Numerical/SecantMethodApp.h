@@ -8,7 +8,7 @@
 #pragma once
 #include <cmath>
 #include "NumericalMethodApp.h"
-#include "../Polynomial.h"
+#include "../Function/Polynomial/Polynomial.h"
 
 class SecantMethodApp : public NumericalMethodApp
 {
