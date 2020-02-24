@@ -17,7 +17,7 @@ using std::to_string;
 using std::vector;
 
 /// <summary>
-/// Defines a polynomial. It assigns n monomials for a n-grade polynomial.
+/// Defines a polynomial. It assigns n + 1 monomials for an n-degree polynomial.
 /// </summary>
 class Polynomial
 {
