@@ -26,6 +26,7 @@ private:
     double froot;
     bool rootFound;
 
+    void initValues();
     static double roundPrecision(double value, double error);
 
 protected:

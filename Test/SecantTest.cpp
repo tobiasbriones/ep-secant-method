@@ -29,6 +29,7 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected, int& pas
     bool passed = true;
 
     printf("Testing polynomial...\n");
+
     // If a root was found but there is actually no root for this call of the algorithm or
     // if there is a root but a root was not found by the algorithm
     // then the test is already failed
@@ -43,7 +44,6 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected, int& pas
         printf("It = %d\n", i);
     }
 
-    // If a root was successfully found then test the results
     if (rootFound)
     {
         bool passedRoot = comparePrecision(root, expected.root);
@@ -51,7 +51,6 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected, int& pas
         bool passedIterations = i == expected.iterations;
         passed &= passedRoot && passedFRoot && passedIterations;
 
-        // If it didn't pass the previous tests, show the information
         if (!passed)
         {
             if (!passedRoot)
@@ -80,11 +79,23 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected, int& pas
 
         if (rootFound)
         {
-            printf("Root at x = %f with P(x) = %f and %d iterations, with a = %f and b = %f\n", root, froot, i, a, b);
+            printf(
+                "Root at x = %f with P(x) = %f and %d iterations, with a = %f and b = %f\n",
+                root,
+                froot,
+                i,
+                a,
+                b
+            );
         }
         else
         {
-            printf("A root wasn't found. Finished with x = %f with P(x) = %f and %d iterations\n", root, froot, i);
+            printf(
+                "A root wasn't found. Finished with x = %f with P(x) = %f and %d iterations\n",
+                root,
+                froot,
+                i
+            );
         }
         printf("Test for P(x) = %s PASSED!\n", p.toString().c_str());
     }
@@ -259,7 +270,8 @@ void testForHugePolynomials(int& passedCount, int& failedCount)
     printf("                     TESTING FOR HUGE POLYNOMIALS                     ");
     printf("\n");
 
-    // P(x) = 5 + 23.2x - 85x^2 - 0.21x^3 + 50x^4 - 0.24x^7 + 54.35x^8 + 9x^9 - 45.5x^10 - 25x^11 + 2.25x^14 - 55.254x^15 - 54x^17 + 5.35x^18 + 2.3254x^19 - 0.025x^20
+    // P(x) = 5 + 23.2x - 85x^2 - 0.21x^3 + 50x^4 - 0.24x^7 + 54.35x^8 + 9x^9 - 45.5x^10 - 25x^11 + 2.25x^14
+    //       - 55.254x^15 - 54x^17 + 5.35x^18 + 2.3254x^19 - 0.025x^20
     p.set(
         {5, 23.2, -85, -0.21, 50, 0, 0, -0.24, 54.35, 9, -45.5, -25, 0, 0, 2.25, -55.254, 0, -54, 5.35, 2.3254, -0.025}
     );

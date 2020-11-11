@@ -15,7 +15,7 @@ void NumericalMethodApp::clearScreen() const
 bool NumericalMethodApp::askToContinue(string msg) const
 {
     printf("\n");
-    printf(msg.c_str());
+    printf("%s", msg.c_str());
     printf("\n");
     return _getch() == 13;
 }
@@ -63,7 +63,7 @@ void NumericalMethodApp::showWelcome() const
         {
             string insert = method + " METHOD";
 
-            printf(insert.c_str());
+            printf("%s", insert.c_str());
             i += insert.length();
         }
         else
@@ -101,7 +101,7 @@ int NumericalMethodApp::getInt(string msg) const
 {
     int n;
 
-    printf(msg.c_str());
+    printf("%s", msg.c_str());
     cin >> n;
 
     if (!cin.good())
@@ -117,7 +117,7 @@ double NumericalMethodApp::getDouble(string msg) const
 {
     double n;
 
-    printf(msg.c_str());
+    printf("%s", msg.c_str());
     cin >> n;
 
     if (!cin.good())

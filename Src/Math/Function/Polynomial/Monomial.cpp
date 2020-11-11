@@ -12,7 +12,7 @@ Monomial::Monomial(int degree, double coefficient) :
 {
     if (degree < 0)
     {
-        string msg = "A monomial has non-negative degree, invalid degree " + degree;
+        string msg = "A monomial has non-negative degree, invalid degree " + to_string(degree);
         throw runtime_error(msg);
     }
     setCoefficient(coefficient);

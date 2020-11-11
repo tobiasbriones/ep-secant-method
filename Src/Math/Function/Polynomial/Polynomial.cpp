@@ -31,10 +31,13 @@ void Polynomial::setCoefficient(int monomialDegree, double value)
 {
     if (monomialDegree < 0 || monomialDegree > degree)
     {
-        string msg =
-            "Invalid monomial degree " + to_string(monomialDegree) + " for polynomial of degree " + to_string(degree);
+        string msg = "Invalid monomial degree "
+                     + to_string(monomialDegree)
+                     + " for polynomial of degree "
+                     + to_string(degree);
         throw runtime_error(msg);
     }
+
     // The last monomial can't be zero as this polynomial has grade n
     // It may be zero only if it is a constant polynomial
     if (!isConstant() && monomialDegree == degree && value == 0)

@@ -16,7 +16,7 @@ SecantMethodApp::SecantMethodApp()
 {
     pPolynomial = NULL;
 
-    reset();
+    initValues();
 }
 
 SecantMethodApp::~SecantMethodApp()
@@ -25,7 +25,18 @@ SecantMethodApp::~SecantMethodApp()
     pPolynomial = NULL;
 }
 
-// --------------------------------------------- NUMERICAL METHOD APP --------------------------------------------- //
+// ---------------------------------------------  NUMERICAL METHOD APP  --------------------------------------------- //
+void SecantMethodApp::initValues()
+{
+    n = 0;
+    a = 0;
+    b = 0;
+    iterationsNumber = 0;
+    root = 0;
+    froot = 0;
+    rootFound = false;
+}
+
 string SecantMethodApp::getName() const
 {
     return "SECANT";
@@ -64,7 +75,7 @@ bool SecantMethodApp::gatherInput()
     catch (const runtime_error& e)
     {
         printf("\n");
-        printf(e.what());
+        printf("%s", e.what());
         printf("\n");
         return false;
     }
@@ -126,26 +137,28 @@ void SecantMethodApp::showResults() const
 
 void SecantMethodApp::reset()
 {
-    n = 0;
-    a = 0;
-    b = 0;
-    iterationsNumber = 0;
-    root = 0;
-    froot = 0;
-    rootFound = false;
+    initValues();
 
     delete pPolynomial;
     pPolynomial = NULL;
 }
 
-// --------------------------------------------- STATIC METHODS --------------------------------------------- //
+// ------------------------------------------------  STATIC METHODS  ------------------------------------------------ //
 double SecantMethodApp::roundPrecision(double value, double error)
 {
     return round(value / error) * error;
 }
 
-double SecantMethodApp::compute(Polynomial& p, double a, double b, double error, int threshold, bool& wasFound,
-                                int& iterationsNumber, double& froot)
+double SecantMethodApp::compute(
+    Polynomial& p,
+    double a,
+    double b,
+    double error,
+    int threshold,
+    bool& wasFound,
+    int& iterationsNumber,
+    double& froot
+)
 {
     iterationsNumber = 0;
     double previousPrevious = a;
@@ -174,9 +187,11 @@ double SecantMethodApp::compute(Polynomial& p, double a, double b, double error,
     {
         double fpreviousPrevious = p.eval(previousPrevious);
         double fprevious = p.eval(previous);
+        double x_prev_minus_x_prev_prev = previous - previousPrevious;
+        double f_prev_minus_f_prev_prev = fprevious - fpreviousPrevious;
+        double equationFraction = fpreviousPrevious * (x_prev_minus_x_prev_prev / f_prev_minus_f_prev_prev);
 
-        current =
-            previousPrevious - fpreviousPrevious * ((previous - previousPrevious) / (fprevious - fpreviousPrevious));
+        current = previousPrevious - equationFraction;
         fcurrent = p.eval(current);
         previousPrevious = previous;
         previous = current;
