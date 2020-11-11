@@ -9,131 +9,154 @@
 
 void NumericalMethodApp::clearScreen() const
 {
-	clear();
+    clear();
 }
 
 bool NumericalMethodApp::askToContinue(string msg) const
 {
-	printf("\n");
-	printf(msg.c_str());
-	printf("\n");
-	return _getch() == 13;
+    printf("\n");
+    printf(msg.c_str());
+    printf("\n");
+    return _getch() == 13;
 }
 
 void NumericalMethodApp::showWelcome() const
 {
-	const string method = getName();
+    const string method = getName();
 
-	printf("                      ******************************************************************                      ");
-	printf("\n");
-	printf("                    *                                                                    *                    ");
-	printf("\n");
-	printf("                    *                          EXAMPLE PROJECT                           *                    ");
-	printf("\n");
-	printf("                    *                                                                    *                    ");
-	printf("\n");
-	printf("                    *  ________________________________________________________________  *                    ");
-	printf("\n");
-	printf("                    *                                                                    *                    ");
-	printf("\n");
-	printf("                    *                          NUMERICAL ANALYSIS                        *                    ");
-	printf("\n");
-	printf("                    *                                                                    *                    ");
-	printf("\n");
-	printf("                    *");
-	for (int i = 1; i < 70; i++)
-	{
-		if (i == 29)
-		{
-			string insert = method + " METHOD";
+    printf(
+        "                      ******************************************************************                      "
+    );
+    printf("\n");
+    printf(
+        "                    *                                                                    *                    "
+    );
+    printf("\n");
+    printf(
+        "                    *                          EXAMPLE PROJECT                           *                    "
+    );
+    printf("\n");
+    printf(
+        "                    *                                                                    *                    "
+    );
+    printf("\n");
+    printf(
+        "                    *  ________________________________________________________________  *                    "
+    );
+    printf("\n");
+    printf(
+        "                    *                                                                    *                    "
+    );
+    printf("\n");
+    printf(
+        "                    *                          NUMERICAL ANALYSIS                        *                    "
+    );
+    printf("\n");
+    printf(
+        "                    *                                                                    *                    "
+    );
+    printf("\n");
+    printf("                    *");
+    for (int i = 1; i < 70; i++)
+    {
+        if (i == 29)
+        {
+            string insert = method + " METHOD";
 
-			printf(insert.c_str());
-			i += insert.length();
-		}
-		else
-		{
-			printf(" ");
-		}
-	}
-	printf("*                    ");
-	printf("\n");
-	printf("                    *                                                                    *                    ");
-	printf("\n");
-	printf("                      ******************************************************************                      ");
-	printf("\n");
-	printf("\n");
+            printf(insert.c_str());
+            i += insert.length();
+        }
+        else
+        {
+            printf(" ");
+        }
+    }
+    printf("*                    ");
+    printf("\n");
+    printf(
+        "                    *                                                                    *                    "
+    );
+    printf("\n");
+    printf(
+        "                      ******************************************************************                      "
+    );
+    printf("\n");
+    printf("\n");
 }
 
 bool NumericalMethodApp::showFooter() const
 {
-	printf("\n");
-	printf("Great job by studying the Example Projects!");
-	printf("\n");
-	printf("Learn more by accessing the Example Projects at https://tobiasbriones.engineer/ or https://github.com/TobiasBriones/");
-	printf("\n");
-	printf("\n");
-	return askToContinue("Press ENTER to continue, other key to exit");
+    printf("\n");
+    printf("Great job by studying the Example Projects!");
+    printf("\n");
+    printf(
+        "Learn more by accessing the Example Projects at https://tobiasbriones.engineer/ or https://github.com/TobiasBriones/"
+    );
+    printf("\n");
+    printf("\n");
+    return askToContinue("Press ENTER to continue, other key to exit");
 }
 
 int NumericalMethodApp::getInt(string msg) const
 {
-	int n;
+    int n;
 
-	printf(msg.c_str());
-	cin >> n;
+    printf(msg.c_str());
+    cin >> n;
 
-	if (!cin.good())
-	{
-		cin.clear();
-		cin.ignore(INT_MAX, '\n');
-		throw runtime_error("Please enter an integer number");
-	}
-	return n;
+    if (!cin.good())
+    {
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+        throw runtime_error("Please enter an integer number");
+    }
+    return n;
 }
 
 double NumericalMethodApp::getDouble(string msg) const
 {
-	double n;
+    double n;
 
-	printf(msg.c_str());
-	cin >> n;
+    printf(msg.c_str());
+    cin >> n;
 
-	if (!cin.good())
-	{
-		cin.clear();
-		cin.ignore(INT_MAX, '\n');
-		throw runtime_error("Please enter a real number");
-	}
-	return n;
+    if (!cin.good())
+    {
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+        throw runtime_error("Please enter a real number");
+    }
+    return n;
 }
 
 void NumericalMethodApp::run()
 {
-	bool isRunning = true;
+    bool isRunning = true;
 
-	do
-	{
-		reset();
-		clearScreen();
-		showWelcome();
-		while (!gatherInput())
-		{
-			printf("\n");
-			printf("\n");
-		}
-		if (!execute())
-		{
-			if (askToContinue("Press ENTER to restart, other key to exit"))
-			{
-				continue;
-			}
-			else
-			{
-				isRunning = showFooter();
-				continue;
-			}
-		}
-		showResults();
-		isRunning = showFooter();
-	} while (isRunning);
+    do
+    {
+        reset();
+        clearScreen();
+        showWelcome();
+        while (!gatherInput())
+        {
+            printf("\n");
+            printf("\n");
+        }
+        if (!execute())
+        {
+            if (askToContinue("Press ENTER to restart, other key to exit"))
+            {
+                continue;
+            }
+            else
+            {
+                isRunning = showFooter();
+                continue;
+            }
+        }
+        showResults();
+        isRunning = showFooter();
+    }
+    while (isRunning);
 }

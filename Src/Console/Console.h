@@ -6,6 +6,7 @@
  */
 
 #pragma once
+
 #include <iostream>
 #include "../App.h"
 
@@ -14,4 +15,5 @@ using std::endl;
 using App::APP_VERSION;
 
 void printHeader();
+
 void clear();

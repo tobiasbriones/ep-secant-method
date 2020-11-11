@@ -6,6 +6,7 @@
  */
 
 #pragma once
+
 #include <string>
 #include <stdio.h>
 #include <iostream>
@@ -27,6 +28,7 @@ class NumericalMethodApp
 
 private:
     void clearScreen() const;
+
     bool askToContinue(string) const;
 
 protected:
@@ -100,5 +102,4 @@ public:
     /// respective subclass.
     /// </summary>
     void run();
-
 };

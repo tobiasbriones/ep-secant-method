@@ -6,6 +6,7 @@
  */
 
 #pragma once
+
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -23,18 +24,23 @@ class Polynomial
 {
 
 private:
-	const int degree;
-	vector<Monomial> monomials;
+    const int degree;
+    vector <Monomial> monomials;
 
 public:
-	Polynomial(int);
+    Polynomial(int);
 
-	int getDegree() const;
-	void setCoefficient(int, double);
-	void set(vector<double>);
-	double getCoefficient(int) const;
-	double eval(double);
-	string toString();
-	bool isConstant() const;
+    int getDegree() const;
 
+    void setCoefficient(int, double);
+
+    void set(vector<double>);
+
+    double getCoefficient(int) const;
+
+    double eval(double);
+
+    string toString();
+
+    bool isConstant() const;
 };

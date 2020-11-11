@@ -34,7 +34,11 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected, int& pas
     // then the test is already failed
     if (rootFound != expected.wasFound)
     {
-        printf("Different outcome, root found is %s but %s was expected\n", rootFound ? "true" : "false", expected.wasFound ? "true" : "false");
+        printf(
+            "Different outcome, root found is %s but %s was expected\n",
+            rootFound ? "true" : "false",
+            expected.wasFound ? "true" : "false"
+        );
         passed = false;
         printf("It = %d\n", i);
     }
@@ -60,7 +64,11 @@ void testPolynomial(Polynomial& p, double a, double b, Result expected, int& pas
             }
             if (!passedIterations)
             {
-                printf("Number of iterations didn't pass, it had %d iterations, expected %d iterations\n", i, expected.iterations);
+                printf(
+                    "Number of iterations didn't pass, it had %d iterations, expected %d iterations\n",
+                    i,
+                    expected.iterations
+                );
             }
         }
     }
@@ -102,7 +110,7 @@ void testForConstantPolynomials(int& passedCount, int& failedCount)
     p.setCoefficient(0, -20);
     expected.set(0, 0, 0, false);
     testPolynomial(p, -1, 1, expected, passedCount, failedCount);
-    
+
     // P(x) = -1
     p.setCoefficient(0, -1);
     expected.set(0, 0, 0, false);
@@ -176,17 +184,17 @@ void testForConstantMonomialZero(int& passedCount, int& failedCount)
     printf("\n");
 
     // P(x) = 5x - 100x^2 + 3.60x^3 + 5x^4
-    p1.set({ 0, 5, -100, 3.60, 5 });
+    p1.set({0, 5, -100, 3.60, 5});
     expected.set(-4.8695, -0.0327, 14);
     testPolynomial(p1, -5, 5, expected, passedCount, failedCount);
 
     // P(x) = 5x - 100x^2 + 3.60x^3 + 5x^4 (p1 again)
-    p1.set({ 0, 5, -100, 3.60, 5 });
+    p1.set({0, 5, -100, 3.60, 5});
     expected.set(0.0501, 0, 13);
     testPolynomial(p1, -2, 2, expected, passedCount, failedCount);
 
     // P(x) = 10x^2 + 8.64x^4 - 50x^5 + 4x^9 + 11.2x^10
-    p2.set({ 0, 0, 10, 0, 8.64, -50, 0, 0, 0, 4, 11.2 });
+    p2.set({0, 0, 10, 0, 8.64, -50, 0, 0, 0, 4, 11.2});
     expected.set(1.2068, 0.0026, 28);
     testPolynomial(p2, -5, 5, expected, passedCount, failedCount);
 
@@ -205,7 +213,7 @@ void testForPolynomialsWithDecimals(int& passedCount, int& failedCount)
     printf("\n");
 
     // P(x) = -0.0094 - 5x^2 + 0.025x^3 + 0.325x^5 + 54.0223x^6 + 211.3541x^7
-    p1.set({ -0.0094, 0, -5, 0.025, 0, 0.325, 54.0223, 211.3541 });
+    p1.set({-0.0094, 0, -5, 0.025, 0, 0.325, 54.0223, 211.3541});
     expected.set(0.4311, -0.0002, 9);
     testPolynomial(p1, 0.3, 0.5, expected, passedCount, failedCount);
 
@@ -224,17 +232,17 @@ void testForNonRootPolynomials(int& passedCount, int& failedCount)
     printf("\n");
 
     // P(x) = 100 + 5x^3 + 500x^4
-    p1.set({ 100, 0, 0, 5, 500 });
+    p1.set({100, 0, 0, 5, 500});
     expected.set(0, 0, THRESHOLD, false);
     testPolynomial(p1, -5, 5, expected, passedCount, failedCount);
 
     // P(x) = -0.8 + 0.33x + 2.3584x^2 - 3.3054x^4
-    p1.set({ -0.8, 0.33, 2.3584, 0, -3.25 });
+    p1.set({-0.8, 0.33, 2.3584, 0, -3.25});
     expected.set(0, 0, THRESHOLD, false);
     testPolynomial(p1, -5, 5, expected, passedCount, failedCount);
 
     // P(x) = 5 + 2x^2
-    p2.set({ 5, 0, 2 });
+    p2.set({5, 0, 2});
     expected.set(0, 0, THRESHOLD, false);
     testPolynomial(p2, -5, 5, expected, passedCount, failedCount);
 
@@ -252,7 +260,9 @@ void testForHugePolynomials(int& passedCount, int& failedCount)
     printf("\n");
 
     // P(x) = 5 + 23.2x - 85x^2 - 0.21x^3 + 50x^4 - 0.24x^7 + 54.35x^8 + 9x^9 - 45.5x^10 - 25x^11 + 2.25x^14 - 55.254x^15 - 54x^17 + 5.35x^18 + 2.3254x^19 - 0.025x^20
-    p.set({ 5, 23.2, -85, -0.21, 50, 0, 0, -0.24, 54.35, 9, -45.5, -25, 0, 0, 2.25, -55.254, 0, -54, 5.35, 2.3254, -0.025 });
+    p.set(
+        {5, 23.2, -85, -0.21, 50, 0, 0, -0.24, 54.35, 9, -45.5, -25, 0, 0, 2.25, -55.254, 0, -54, 5.35, 2.3254, -0.025}
+    );
     expected.set(0.4599, -0.0008, 3);
     testPolynomial(p, 0.3, 0.5, expected, passedCount, failedCount);
 
@@ -273,7 +283,12 @@ void runAllTests()
     testForNonRootPolynomials(testsPassed, testsFailed);
     testForHugePolynomials(testsPassed, testsFailed);
     printf("\n");
-    printf("%d Tests completed. Succeeded tests: %d, Failed tests: %d", testsPassed + testsFailed, testsPassed, testsFailed);
+    printf(
+        "%d Tests completed. Succeeded tests: %d, Failed tests: %d",
+        testsPassed + testsFailed,
+        testsPassed,
+        testsFailed
+    );
     printf("\n");
     printf("\n");
 }

@@ -6,6 +6,7 @@
  */
 
 #pragma once
+
 #include <cmath>
 #include "NumericalMethodApp.h"
 #include "../Function/Polynomial/Polynomial.h"
@@ -29,15 +30,19 @@ private:
 
 protected:
     string getName() const;
+
     bool gatherInput();
+
     bool execute();
+
     void showResults() const;
+
     void reset();
-    
+
 public:
     SecantMethodApp();
+
     ~SecantMethodApp();
 
     static double compute(Polynomial&, double, double, double, int, bool&, int&, double&);
-
 };

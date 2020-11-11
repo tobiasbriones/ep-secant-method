@@ -15,11 +15,11 @@ void printHeader()
 
 void clear()
 {
-	// If it doesn't work, you have in total three options to clear the console
+    // If it doesn't work, you have in total three options to clear the console
 
-	system("cls");
-	//cout << "\033[2J\033[1;1H";
-	//cout << endl;
+    system("cls");
+    //cout << "\033[2J\033[1;1H";
+    //cout << endl;
 
     printHeader();
 }

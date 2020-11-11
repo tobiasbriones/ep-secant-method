@@ -6,6 +6,7 @@
  */
 
 #pragma once
+
 #include <stdexcept>
 #include <string>
 
@@ -20,15 +21,17 @@ class Monomial
 {
 
 private:
-	const int degree;
-	double coefficient;
+    const int degree;
+    double coefficient;
 
 public:
-	Monomial(int, double);
+    Monomial(int, double);
 
-	void setCoefficient(double);
-	double getCoefficient() const;
-	double eval(double) const;
-	string toString(bool = true) const;
+    void setCoefficient(double);
 
+    double getCoefficient() const;
+
+    double eval(double) const;
+
+    string toString(bool = true) const;
 };

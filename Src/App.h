@@ -7,8 +7,7 @@
 
 #pragma once
 
-namespace App {
-
-	const char APP_VERSION[] = "1.0";
-
+namespace App
+{
+    const char APP_VERSION[] = "1.0.1";
 }

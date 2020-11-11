@@ -6,6 +6,7 @@
  */
 
 #pragma once
+
 #include "../Src/Math/Numerical/SecantMethodApp.h"
 
 const double ERROR = pow(10, -4);
@@ -20,15 +21,22 @@ struct Result
     bool wasFound;
 
     void set(double, double, int, bool = true);
-
 };
 
 bool comparePrecision(double, double);
+
 void testPolynomial(Polynomial&, double, double, Result, int&, int&);
+
 void testForConstantPolynomials(int&, int&);
+
 void testForDegreeOnePolynomial(int&, int&);
+
 void testForConstantMonomialZero(int&, int&);
+
 void testForPolynomialsWithDecimals(int&, int&);
+
 void testForNonRootPolynomials(int&, int&);
+
 void testForHugePolynomials(int&, int&);
+
 void runAllTests();
