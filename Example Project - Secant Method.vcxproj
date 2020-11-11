@@ -107,6 +107,7 @@
     <ClCompile Include="Test\SecantTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\App.h" />
     <ClInclude Include="Src\Main.h" />
     <ClInclude Include="Src\Math\Numerical\NumericalMethodApp.h" />
     <ClInclude Include="Src\Math\Function\Polynomial\Monomial.h" />
