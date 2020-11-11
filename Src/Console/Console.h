@@ -7,10 +7,11 @@
 
 #pragma once
 #include <iostream>
-#include "../Main.h"
+#include "../App.h"
 
 using std::cout;
 using std::endl;
+using App::APP_VERSION;
 
 void printHeader();
 void clear();

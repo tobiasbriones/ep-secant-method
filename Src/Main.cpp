@@ -7,13 +7,13 @@
 
 #include "Math/Numerical/SecantMethodApp.h"
 #include "../Test/SecantTest.h"
-#include "Main.h"
 
 int main()
 {
     SecantMethodApp app;
 
-    app.run();
-    //runAllTests();
+    //app.run();
+    runAllTests();
+    getch();
 	return 0;
 }
