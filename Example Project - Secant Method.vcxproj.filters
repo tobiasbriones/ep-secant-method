@@ -71,12 +71,4 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="_Repo\Assets\Screenshot_1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="_Repo\Assets\Screenshot_2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
 </Project>
