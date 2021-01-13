@@ -19,7 +19,6 @@ const int THRESHOLD = 1000;
 
 struct Result
 {
-
     double root;
     double froot;
     int iterations;

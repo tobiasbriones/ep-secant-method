@@ -48,4 +48,5 @@ public:
     string toString();
 
     bool isConstant() const;
+
 };

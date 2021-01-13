@@ -51,4 +51,5 @@ public:
     ~SecantMethodApp();
 
     static double compute(Polynomial&, double, double, double, int, bool&, int&, double&);
+
 };
