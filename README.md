@@ -1,10 +1,10 @@
 # Example Project: Secant Method
 
-[![EP](https://raw.githubusercontent.com/TobiasBriones/images/main/example-projects/example.math.numerical.polynomial.cpp.secant-method/ep-secant-method-badge.svg)](https://tobiasbriones.github.io/example-project/ep/secant-method)
+[![EP](https://raw.githubusercontent.com/tobiasbriones/images/main/example-projects/example.math.numerical.polynomial.cpp.secant-method/ep-secant-method-badge.svg)](https://tobiasbriones.github.io/example-project/ep/secant-method)
 &nbsp;
-[![GitHub Repository](https://raw.githubusercontent.com/TobiasBriones/general-images/main/example-projects/badges/ep-gh-repo-badge.svg)](https://github.com/TobiasBriones/example.math.numerical.polynomial.cpp.secant-method)
+[![GitHub Repository](https://raw.githubusercontent.com/tobiasbriones/general-images/main/example-projects/badges/ep-gh-repo-badge.svg)](https://github.com/tobiasbriones/ep-secant-method)
 
-[![Project GitHub License](https://img.shields.io/github/license/TobiasBriones/example.math.numerical.polynomial.cpp.secant-method.svg?style=flat-square)](https://github.com/TobiasBriones/example.math.numerical.polynomial.cpp.secant-method/blob/main/LICENSE)
+[![Project GitHub License](https://img.shields.io/github/license/tobiasbriones/ep-secant-method.svg?style=flat-square)](https://github.com/tobiasbriones/ep-secant-method/blob/main/LICENSE)
 
 Example project for computing the roots of the given polynomial through the secant method to get the
 approximations, written in a C++ console application.
@@ -32,17 +32,17 @@ If you wish to extend this project just take into account some considerations:
 
 ## Screenshots
 
-[![Screenshot 1](https://raw.githubusercontent.com/TobiasBriones/images/main/example-projects/example.math.numerical.polynomial.cpp.secant-method/screenshot-1.png)](https://github.com/TobiasBriones/images/tree/main/example-projects)
+![Screenshot 1](./docs/screenshot-1.png)
 
 ---
 
-[![Screenshot 2](https://raw.githubusercontent.com/TobiasBriones/images/main/example-projects/example.math.numerical.polynomial.cpp.secant-method/screenshot-2.png)](https://github.com/TobiasBriones/images/tree/main/example-projects)
+![Screenshot 2](./docs/screenshot-2.png)
 
 ## Contact
 
-This software: [GitHub Repository](https://github.com/TobiasBriones/example.math.numerical.polynomial.cpp.secant-method)
+This software: [GitHub Repository](https://github.com/tobiasbriones/ep-secant-method)
 
-Tobias Briones: [GitHub](https://github.com/TobiasBriones)
+Tobias Briones: [GitHub](https://github.com/tobiasbriones)
 
 Example Project: [App](https://tobiasbriones.github.io/example-project)
 
@@ -57,4 +57,4 @@ Copyright © 2019-2020 Tobias Briones. All rights reserved.
 
 ### License
 
-This software is licensed under the [MIT License](./LICENSE).
+This project is licensed under the [MIT License](./LICENSE).
