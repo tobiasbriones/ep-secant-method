@@ -2,9 +2,9 @@
 
 [![EP](https://raw.githubusercontent.com/tobiasbriones/images/main/example-projects/example.math.numerical.polynomial.cpp.secant-method/ep-secant-method-badge.svg)](https://tobiasbriones.github.io/example-project/ep/secant-method)
 &nbsp;
-[![GitHub Repository](https://raw.githubusercontent.com/tobiasbriones/general-images/main/example-projects/badges/ep-gh-repo-badge.svg)](https://github.com/tobiasbriones/ep-secant-method)
+[![GitHub Repository](https://img.shields.io/static/v1?label=GITHUB&message=REPOSITORY&labelColor=555&color=0277bd&style=for-the-badge&logo=GITHUB)](https://github.com/tobiasbriones/ep-secant-method)
 
-[![Project GitHub License](https://img.shields.io/github/license/tobiasbriones/ep-secant-method.svg?style=flat-square)](https://github.com/tobiasbriones/ep-secant-method/blob/main/LICENSE)
+[![GitHub Project License](https://img.shields.io/github/license/tobiasbriones/ep-secant-method.svg?style=flat-square)](https://github.com/tobiasbriones/ep-secant-method/blob/main/LICENSE)
 
 Example project for computing the roots of the given polynomial through the secant method to get the
 approximations, written in a C++ console application.
